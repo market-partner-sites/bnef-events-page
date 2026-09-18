@@ -168,7 +168,6 @@
 
       <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 28px;">
         <h2 style="font-size: 26px; font-weight: 600; margin: 0; color: #12161c;">Upcoming events</h2>
-        <span id="results-label" style="font-size: 14px; color: #6b7280;"></span>
       </div>
 
       <div class="filters-row" style="display: flex; gap: 40px; margin-bottom: 34px; flex-wrap: wrap;">
@@ -323,9 +322,6 @@
 
     var grid = document.getElementById('cards-grid');
     var noResults = document.getElementById('no-results');
-    var resultsLabel = document.getElementById('results-label');
-
-    resultsLabel.textContent = filtered.length === 1 ? "Showing 1 event" : "Showing " + filtered.length + " events";
 
     if (filtered.length === 0) {
       grid.style.display = 'none';
