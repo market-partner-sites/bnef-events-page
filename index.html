@@ -155,9 +155,8 @@
         <h1 style="font-size: 44px; font-weight: 600; line-height: 1.12; margin: 0 0 20px 0; color: #12161c;">Where energy, finance and technology converge</h1>
         <p style="font-size: 16px; line-height: 1.6; color: #4b5563; margin: 0 0 26px 0; max-width: 520px;">BNEF's global events convene leaders in energy, industry, transport, technology, finance and government to share insights and make connections. Browse our Summits, Forums and webinars below and register directly on each event's page.</p>
       </div>
-      <div class="hero-photo" style="flex: 1 1 40%; position: relative; border-radius: 16px; overflow: hidden; min-height: 320px; background: linear-gradient(135deg, #0a2f6b 0%, #2f6fe0 55%, #6fb1ff 100%);">
-        <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px); background-size: 18px 18px;"></div>
-        <div style="position: absolute; bottom: 16px; left: 18px; color: rgba(255,255,255,0.75); font-size: 11px; letter-spacing: 0.04em;">[ event photography placeholder ]</div>
+      <div class="hero-photo" style="flex: 1 1 40%; position: relative; border-radius: 16px; overflow: hidden; min-height: 320px;">
+        <img src="images/hero-photo.jpg" alt="Attendees at a BNEF Summit session" style="width: 100%; height: 100%; min-height: 320px; object-fit: cover; display: block;">
       </div>
     </div>
   </div>
@@ -280,6 +279,24 @@
     return list[index % list.length];
   }
 
+  var CITY_PHOTOS = {
+    "Houston 2026": "images/card-houston.jpg",
+    "New York 2027": "images/card-newyork.jpg",
+    "London 2026": "images/card-london.jpg",
+    "San Francisco 2027": "images/card-sanfrancisco.jpg",
+    "Shanghai 2026": "images/card-shanghai.jpg"
+  };
+
+  var OVERLAY = "linear-gradient(180deg, rgba(10,14,22,0.25) 0%, rgba(10,14,22,0.72) 100%)";
+
+  function backgroundFor(e, index) {
+    var photo = e.city ? CITY_PHOTOS[e.city] : null;
+    if (photo) {
+      return OVERLAY + ", url('" + photo + "') center/cover no-repeat";
+    }
+    return gradientFor(e.type, index);
+  }
+
   var state = { region: "All", type: "All" };
 
   function escapeHtml(s) {
@@ -333,7 +350,7 @@
 
     grid.innerHTML = filtered.map(function (e, i) {
       var badge = e.type === "Other Energy Events" ? "OTHER ENERGY EVENT" : e.type.toUpperCase();
-      var gradient = gradientFor(e.type, i);
+      var gradient = backgroundFor(e, i);
       var cityHtml = e.city ? '<div class="card-title-city">' + escapeHtml(e.city) + '</div>' : '';
       var sampleHtml = e.sample ? '<span class="sample-tag">Sample</span>' : '';
       return (
