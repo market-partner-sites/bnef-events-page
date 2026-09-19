@@ -32,7 +32,8 @@
 
   .pill { border: 1px solid #d7dbe0; background: #ffffff; color: #384250; font-size: 13px; font-weight: 500; padding: 9px 16px; border-radius: 999px; white-space: nowrap; transition: all 0.15s ease; }
   .pill:hover { border-color: #9aa4b2; }
-  .pill.active { background: #66b4a1; border-color: #66b4a1; color: #ffffff; }
+  .pill.active { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+  .pill.active.pill-summit { background: #66b4a1; border-color: #66b4a1; }
 
   .filter-group-label { font-size: 11px; letter-spacing: 0.08em; font-weight: 600; color: #6b7280; text-transform: uppercase; }
 
@@ -218,7 +219,7 @@
     <div class="hero-flex" style="max-width: 1248px; margin: 0 auto; padding: 56px 30px 40px; display: flex; align-items: center; gap: 56px;">
       <div style="flex: 1 1 55%;">
         <div style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #12161c; margin-bottom: 22px;">GLOBAL EVENT SERIES</div>
-        <h1 style="font-size: 44px; font-weight: 600; line-height: 1.12; margin: 0 0 20px 0; color: #12161c;">Where energy, finance and technology converge</h1>
+        <h1 style="font-size: 48px; font-weight: 600; line-height: 1.12; margin: 0 0 28px 0; color: #12161c;">Where energy, finance and technology converge</h1>
         <p style="font-size: 18px; line-height: 1.6; color: #4b5563; margin: 0 0 26px 0; max-width: 520px;">BNEF's global events convene leaders in energy, industry, transport, technology, finance and government to share insights and make connections. Browse our Summits, Forums and webinars below and register directly on each event's page.</p>
       </div>
       <div class="hero-photo" style="flex: 1 1 40%; position: relative; border-radius: 16px; overflow: hidden; min-height: 320px;">
@@ -390,7 +391,8 @@
 
     TYPES.forEach(function (t) {
       var btn = document.createElement('button');
-      btn.className = 'pill' + (state.type === t ? ' active' : '');
+      var isActive = state.type === t;
+      btn.className = 'pill' + (isActive ? ' active' : '') + (isActive && t === 'Summit' ? ' pill-summit' : '');
       btn.setAttribute('aria-pressed', state.type === t ? 'true' : 'false');
       btn.textContent = t;
       btn.addEventListener('click', function () { state.type = t; render(); });
