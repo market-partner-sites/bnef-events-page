@@ -41,6 +41,7 @@
   .event-card .type-tag { position: absolute; top: 18px; left: 22px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(102,180,161,0.16); backdrop-filter: blur(2px); padding: 5px 10px; border-radius: 6px; }
   .event-card .sample-tag { position: absolute; top: 18px; right: 22px; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(0,0,0,0.35); padding: 4px 8px; border-radius: 6px; }
   .event-card .arrow-btn { position: absolute; bottom: 18px; right: 18px; width: 40px; height: 40px; border-radius: 999px; background: #76a9f9; display: flex; align-items: center; justify-content: center; }
+  .event-card .arrow-btn.arrow-btn-summit { background: #66b4a1; }
   .event-card .card-title { font-family: 'Avenir Next', Avenir, 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.28; margin: 0 0 2px 0; max-width: 82%; }
   .event-card .card-title-city { font-family: 'Avenir Next', Avenir, 'Poppins', system-ui, sans-serif; font-weight: 400; font-size: 19px; line-height: 1.28; margin: 0 0 10px 0; max-width: 82%; }
   .event-card .card-meta { font-size: 15px; opacity: 0.92; line-height: 1.5; }
@@ -420,6 +421,7 @@
 
     grid.innerHTML = filtered.map(function (e, i) {
       var badge = e.type === "Other Energy Events" ? "OTHER ENERGY EVENT" : e.type.toUpperCase();
+      var arrowClass = e.type === "Summit" ? " arrow-btn-summit" : "";
       var gradient = backgroundFor(e, i);
       var cityHtml = e.city ? '<div class="card-title-city">' + escapeHtml(e.city) + '</div>' : '';
       var sampleHtml = e.sample ? '<span class="sample-tag">Sample</span>' : '';
@@ -430,7 +432,7 @@
           '<div class="card-title">' + escapeHtml(e.title) + '</div>' +
           cityHtml +
           '<div class="card-meta">' + escapeHtml(e.date) + '</div>' +
-          '<span class="arrow-btn" aria-hidden="true">' +
+          '<span class="arrow-btn' + arrowClass + '" aria-hidden="true">' +
             '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"></line><polyline points="13 5 20 12 13 19"></polyline></svg>' +
           '</span>' +
         '</a>'
